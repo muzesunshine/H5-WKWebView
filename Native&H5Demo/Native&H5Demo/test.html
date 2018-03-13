@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HTML中用JS调用OC方法</title>
+        <style>
+        
+        #div1 {
+            background-color:#ccc;
+            width:100px;
+            height:100px;
+            position:absolute;
+            top:400px
+        }
+        
+        
+        </style>
+        
+    </head>
+    <body>
+        
+        <p id="div1">
+            <img id="img1" src="" height="200" width="200" />
+        </p>
+        <script>
+            
+            function getImg(urls) {
+                //alert(urls)
+                // var oDiv = document.getElementById("div1");
+                var oImg = document.getElementById("img1");
+                
+                oImg.src = urls;
+                alert(oImg.src)
+                
+            }
+        window.getImg = getImg
+        
+        </script>
+        <br/>
+
+        <div  id="getImg" width=200 height=30>打开相册</div><br><br/>
+   <script>
+        document.getElementById('getImg').onclick=function(){
+        window.webkit.messageHandlers.takePicturesByNative.postMessage({
+                    "picType": "0",
+                    "picCount":"9",
+                    "callBackName": "getImg"
+                })
+        }
+   </script>
+    </body>
+    
+</html>
